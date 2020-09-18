@@ -1,10 +1,11 @@
 # Lab2A-Object
-By the end of this lab, you should know what objects are and be able to create your own. 
+By the end of this lab, you should know what objects are and be able to create your own objects. You should be able to scale them too. 
 
 ## Useful REadings
 [Daniel Shiffman's tutorial on objects](https://processing.org/tutorials/objects/)
 for 
 ## Lab Process
+### Setup
 0. Open Processing
 1. Create a folder for lab 2A, `2A-*YOUR FIRST NAME*-*YOUR LAST NAME*`. 
 Create a README.md inside this folder. 
@@ -46,6 +47,7 @@ void setup(){
   noStroke(); // get rid of outlines
 }
 ```
+### Hardcode Shape with a Class
 5. Draw two (or more) of a favored shape on the canvas. 
 This example will use triangles.  
 Choose your own set of shapes.
@@ -81,6 +83,7 @@ void draw(){
             400, 400);
 }
 ```
+#### Beginnings of Class Formation
 6. Now, we start to build a class for your shape. 
 The example class is TriShape. 
 We first make the structure of a class. 
@@ -249,6 +252,59 @@ class TriShape{
   
 }
 ```
+10. Run the file. 
+You still cannot see the triangle. 
+We need to display `tri1` (or your class instance name) in draw. 
+Once you make the changes below, run again, and you should be able to see the object. 
+```processing
+TriShape tri1;
+
+void setup(){
+  size( 500 , 500);   
+  noStroke();
+  
+  // initialize trishape
+  tri1 = new TriShape();
+}
+
+void draw(){
+  background(255);
+  
+  /* CHANGE START */
+  // display objects
+  tri1.display();
+  /* CHANGE END */
+}
+
+class TriShape{
+  
+  // class intrinsic values
+  
+  // constructor
+  TriShape(){ 
+  }
+  
+  // display
+  void display(){
+    // triangle 1
+    fill( 255, 0, 0, 200);
+    triangle( 100, 100,       //x, y per point
+              100, 300, 
+              300, 300);
+    
+    // triangle 2
+    fill( 255, 255, 0, 200);
+    triangle( 200, 200,       // x, y per point
+              200, 400, 
+              400, 400);
+  }
+}
+```
+### Generalized Class
+11.
+### Multiple Class Objects
+### Make Your Class Scaleable
+
 ## Lab Submissions
 Link to your github repository with your lab below.
 
