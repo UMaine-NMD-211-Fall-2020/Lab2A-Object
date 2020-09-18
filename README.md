@@ -159,6 +159,96 @@ class TriShape{
   // display
 }
 ```
+8. Next, we need to create an instance of TriShape object. 
+```processing
+TriShape tri1;
+
+void setup(){
+  size( 500 , 500);   
+  noStroke();
+  
+  /* CHANGE START */
+  // initialize trishape
+  tri1 = new TriShape();
+  /* CHANGE END */
+}
+
+void draw(){
+  background(255);
+  
+  // triangle 1
+  fill( 255, 0, 0, 200);
+  triangle( 100, 100,       //x, y per point
+            100, 300, 
+            300, 300);
+  
+  // triangle 2
+  fill( 255, 255, 0, 200);
+  triangle( 200, 200,       // x, y per point
+            200, 400, 
+            400, 400);
+}
+
+class TriShape{
+  
+  // class intrinsic values
+  
+  // constructor
+  TriShape(){ 
+  }
+  
+  // display
+}
+```
+9. Our class isn't doing anything yet. 
+Show this to yourself by commenting out our draw triangle lines. 
+Then, uncomment them.
+
+10. Create a void display function / method inside of your class object definition. 
+```processing
+TriShape tri1;
+
+void setup(){
+  size( 500 , 500);   
+  noStroke();
+  
+  // initialize trishape
+  tri1 = new TriShape();
+}
+
+void draw(){
+  background(255);
+  /* CHANGE 1 START*/
+  /* CHANGE 1 END*/
+}
+
+class TriShape{
+  
+  // class intrinsic values
+  
+  // constructor
+  TriShape(){ 
+  }
+  
+  /* CHANGE 2 START*/
+  // display
+  void display(){
+    // triangle 1
+    fill( 255, 0, 0, 200);
+    triangle( 100, 100,       //x, y per point
+              100, 300, 
+              300, 300);
+    
+    // triangle 2
+    fill( 255, 255, 0, 200);
+    triangle( 200, 200,       // x, y per point
+              200, 400, 
+              400, 400);
+  }
+  /* CHANGE 2 END*/
+  
+}
+```
 ## Lab Submissions
 Link to your github repository with your lab below.
 
