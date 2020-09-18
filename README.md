@@ -7,19 +7,23 @@ for
 ## Lab Process
 0. Open Processing
 1. Create a folder for lab 2A, `2A-*YOUR FIRST NAME*-*YOUR LAST NAME*`. Create a README.md inside this folder. 
-2. Return to your blank processing file. Save your file within it as `2A-*YOUR FIRST NAME*-*YOUR LAST NAME*`
+2. Return to your blank processing file. Save your file within it as `Lab2A-*YOUR FIRST NAME*-*YOUR LAST NAME*`
 3. Add your introductory comments to the top of your file. Save.
 ```processing
 /*  Lab 2A
-    FirstName LastName
+    Katarina Hoeger
     September 16, 2020
     
     Create an Object
     - create an object
     - scale an object
+    
+    File contains
+    1. 3 objects
+    2. an example of a scaled object
 */
 ```
-4. Fill in the set up section of your document. Consider the canvas size. Consider if you want to see strokes. Consider how you want to draw rectangles and ellipses. 
+4. Fill in the set up section of your document. Consider the canvas size. Consider if you want to see strokes. Consider how you want to draw rectangles and ellipses. My example uses trianges, so I will not use rectMode or ellipseMode
 
 ```processing
 /*  Lab 2A
@@ -32,9 +36,9 @@ for
 */
 
 void setup(){
-  size( 500 , 500);   
-  noStroke();
-  rectMode(CENTER);
+  size( 500, 500);
+  
+  noStroke(); // get rid of outlines
 }
 ```
 5. Draw two of a favored shape on the canvas. This example will use triangles. 
@@ -59,63 +63,53 @@ void draw(){
   
   // triangle 1
   fill( 255, 0, 0, 200);
-  triangle( 100, 100, 100, 200, 200, 200);
+  triangle( 100, 100,       //x, y per point
+            100, 300, 
+            300, 300);
   
   // triangle 2
   fill( 255, 255, 0, 200);
-  triangle( 150, 125, 150, 225, 250, 225);
-  
+  triangle( 200, 200,       // x, y per point
+            200, 400, 
+            400, 400);
 }
 ```
-6. Now, we start to build a class for your shape. The example class is TriShape
-/*  Lab 2A
-    Katarina Hoeger
-    September 16, 2020
-    
-    Create an Object
-    - create an object
-    - scale an object
-*/
-TriShape tri;
-
+6. Now, we start to build a class for your shape. The example class is TriShape. We first make the structure of a class. 
+```processing
 void setup(){
   size( 500 , 500);   
   noStroke();
   rectMode(CENTER);
-  
-  // initialize triangle
-  tri = new TriShape( 300, 300);
 }
 
 void draw(){
   background(255);
   
-  tri.display();
-}
-
-class TriShape{
-  // creates a unified triangle shape
-  float cx; // shape center x
-  float cy; // shape center y
-  
-  // lets the computer know what cx and cy should be 
-  TriShape( float xIn, float yIn){
-    cx = xIn;
-    cy = yIn;
-  }
-  
-  // draws triangle for us
-  void display(){
   // triangle 1
   fill( 255, 0, 0, 200);
-  triangle( 100, 100, 100, 200, 200, 200);
+  triangle( 100, 100,       //x, y per point
+            100, 300, 
+            300, 300);
   
   // triangle 2
   fill( 255, 255, 0, 200);
-  triangle( 150, 125, 150, 225, 250, 225);
-  }
+  triangle( 200, 200,       // x, y per point
+            200, 400, 
+            400, 400);
 }
-
+/*CHANGES START*/
+class TriShape{
+  
+  // class intrinsic values
+  
+  // constructor
+  TriShape(){ 
+  }
+  
+  // display
+}
+/*CHANGES END*/
+```
 ## Lab Submissions
 Link to your github repository with your lab below.
 
