@@ -581,8 +581,76 @@ class TriShape{
 ```
 This time, when you run the code, you should see the changes!
 ### Multiple Class Objects
-16. We need to use the scalar we added. Multiply everything related to object placement in the display method by the scalar. All centerpoints. All widths and heights. All endpoints. 
+17. We have a class. We can make multiple instances of the class and make a cool pattern. This requires 3 changes. Design something with your shape. 
 ```processing
+/* CHANGE 1 */
+TriShape tri1;
+TriShape tri2;
+TriShape tri3;
+TriShape tri4;
+TriShape tri5;
+/* END CHANGE 1 */
+
+void setup(){
+  size( 500 , 500);   
+  noStroke();
+  
+  /* CHANGE 2 */
+  // initialize trishape 
+  tri1 = new TriShape( 4750 , 1000 , 0.1); // TriShape object centered at (250, 250)
+  tri2 = new TriShape( 700 , 150, 0.5);
+  tri3 = new TriShape( 175 , 325, 1);
+  tri4 = new TriShape( 250 , 150, 1.3);
+  tri5 = new TriShape( 200 , 150, 0.3);
+  /* END CHANGE 2 */
+}
+
+void draw(){
+  background(255);
+  
+  /* CHANGE 3 */
+  // display objects
+  tri1.display();
+  tri2.display();
+  tri3.display();
+  tri4.display();
+  tri5.display();
+  /* END CHANGE 3 */
+}
+
+class TriShape{
+  
+
+  // class intrinsic values
+  float cx; // centerpoint's x
+  float cy; // centerpoint's y
+  float s;  // scalar
+  
+  // constructor
+  TriShape( float xInput, float yInput, float scalar){
+    cx = xInput;
+    cy = yInput;
+    s = scalar;
+  }
+
+
+  // display
+  void display(){
+    /* CHANGES START */
+    // triangle 1
+    fill( 255 , 0 , 0 , 200);  // r , g, b , transparency
+    triangle( s*(cx - 150  ), s*(cy - 150), // x1, y1
+              s*(cx - 150)  , s*(cy + 50),  // x2, y2
+              s*(cx + 50 )  , s*(cy + 50)); // x3, y3
+  
+    // triangle 2
+    fill( 255 , 255, 0 , 200 );
+    triangle( s*(cx - 50)   ,   s*(cy - 50)  ,   // x1, y1
+              s*(cx - 50)   ,   s*(cy + 150)  ,  // x2, y2
+              s*(cx + 150)  ,  s*(cy +150)  );  // x3, y3
+    /* CHANGES END */
+  }
+}
 ```
 
 ## Lab Submissions
