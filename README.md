@@ -1,10 +1,16 @@
 # Lab2A-Object
 By the end of this lab, you should know what objects are and be able to create your own objects. You should be able to scale them too. 
 
+You specifically need to produce an image with
+- 3 or more objects placed in different places on the canvas
+- at least 2 objects scaled
+
+
 ## Useful REadings
 [Daniel Shiffman's tutorial on objects](https://processing.org/tutorials/objects/)
 for 
 ## Lab Process
+Run through these steps to finish the lab. Remember to save frequently!
 ### Setup
 0. Open Processing
 1. Create a folder for lab 2A, `2A-*YOUR FIRST NAME*-*YOUR LAST NAME*`. 
@@ -304,6 +310,7 @@ class TriShape{
 Right now, our conglomerate shape is hardcoded.
 That means, we had to physically say where each point is laid out. 
 If we can write out the orientation of each shape with respect to one point in the shape, we can place the object wherever we want. 
+
 12. Our shapes are currently hardcoded. 
 We need to write the shapes in terms of their center points for the entire shape is. 
 We need to define local variables for the class, values intrinsic to any instance of this class object. 
@@ -407,14 +414,176 @@ class TriShape{
   }
 }
 ```
-14. We need to put new 
+14. We rewrite our shape in terms of  our centerpoints. 
+If you have uncentered rectangles, ellipses, or a triangle write it in terms of how far each point is from the centerpoint of the conglomerate shape.
+If you have centered rectangles and ellipses, you need to figure out how to write the centerpoint of each shape the object is composed of in terms of conglomerate shape's centerpoint.
+
+*Triangle example below.* (I hope to add a rectangle or ellipse example shortly, but let's make sure all the rest of the lab work goees up first. )
+
 ```processing
+TriShape tri1;
+
+void setup(){
+  size( 500 , 500);   
+  noStroke();
+
+  // initialize trishape 
+  tri1 = new TriShape( 250 , 250 ); // TriShape object centered at (250, 250)
+}
+
+void draw(){
+  background(255);
+  
+  // display objects
+  tri1.display();
+}
+
+class TriShape{
+  
+  // class intrinsic values
+  float cx;
+  float cy;
+  
+  // constructor
+  TriShape( float xInput, float yInput){
+    cx = xInput;
+    cy = yInput;
+  }
+
+  // display
+  void display(){
+    /* START CHANGES */
+    // triangle 1
+    fill( 255, 0, 0, 200);
+    triangle( cx - 150,   cy - 150,   // x1, y1
+              cx - 150,   cy + 50,    // x2, y2
+              cx + 50,    cy + 50);   // x3, y3
+    
+    // triangle 2
+    fill( 255, 255, 0, 200);
+    triangle( cx - 50   ,   cy - 50    ,   // x1, y1
+              cx - 50   ,   cy + 150   ,   // x2, y2
+              cx + 150  ,   cy +150    );  // x3, y3
+     /* END CHANGES */
+  }
+}
 ```
-15. We need to put new 
-```processing
-```
-### Multiple Class Objects
+
+And, that's it! You now have generally defined, moveable class objects.
+
 ### Make Your Class Scaleable
+15. The first step of scaling the shape is to add a scalar input to the class. 
+We need to add it to the local variables and constructor, as well as fix the instance where we instantiate the object. 
+```processing
+TriShape tri1;
+
+void setup(){
+  size( 500 , 500);   
+  noStroke();
+  
+  /* START CHANGES 1*/
+  // initialize trishape 
+  tri1 = new TriShape( 250 , 250 , 0.7); // TriShape object centered at (250, 250)
+  /* END CHANGES */
+}
+
+void draw(){
+  background(255);
+  
+  // display objects
+  tri1.display();
+}
+
+class TriShape{
+  
+  /* START CHANGES 2 */
+  // class intrinsic values
+  float cx; // centerpoint's x
+  float cy; // centerpoint's y
+  float s;  // scalar
+  
+  // constructor
+  TriShape( float xInput, float yInput, float scalar){
+    cx = xInput;
+    cy = yInput;
+    s = scalar;
+  }
+  /* END CHANGES 2*/
+
+  // display
+  void display(){
+    // triangle 1
+    fill( 255, 0, 0, 200);
+    triangle( cx - 150,   cy - 150,   // x1, y1
+              cx - 150,   cy + 50,    // x2, y2
+              cx + 50,    cy + 50);   // x3, y3
+    
+    // triangle 2
+    fill( 255, 255, 0, 200);
+    triangle( cx - 50   ,   cy - 50    ,   // x1, y1
+              cx - 50   ,   cy + 150   ,   // x2, y2
+              cx + 150  ,   cy +150    );  // x3, y3
+  }
+}
+```
+16. We need to use the scalar we added. Multiply everything related to object placement in the display method by the scalar. All centerpoints. All widths and heights. All endpoints. 
+```processing
+TriShape tri1;
+
+void setup(){
+  size( 500 , 500);   
+  noStroke();
+  
+  // initialize trishape 
+  tri1 = new TriShape( 250 , 250 , 0.7); // TriShape object centered at (250, 250)
+}
+
+void draw(){
+  background(255);
+  
+  // display objects
+  tri1.display();
+}
+
+class TriShape{
+  
+
+  // class intrinsic values
+  float cx; // centerpoint's x
+  float cy; // centerpoint's y
+  float s;  // scalar
+  
+  // constructor
+  TriShape( float xInput, float yInput, float scalar){
+    cx = xInput;
+    cy = yInput;
+    s = scalar;
+  }
+
+
+  // display
+  void display(){
+    /* CHANGES START */
+    // triangle 1
+    fill( 255 , 0 , 0 , 200);  // r , g, b , transparency
+    triangle( s*(cx - 150  ), s*(cy - 150), // x1, y1
+              s*(cx - 150)  , s*(cy + 50),  // x2, y2
+              s*(cx + 50 )  , s*(cy + 50)); // x3, y3
+  
+    // triangle 2
+    fill( 255 , 255, 0 , 200 );
+    triangle( s*(cx - 50)   ,   s*(cy - 50)  ,   // x1, y1
+              s*(cx - 50)   ,   s*(cy + 150)  ,  // x2, y2
+              s*(cx + 150)  ,  s*(cy +150)  );  // x3, y3
+    /* CHANGES END */
+  }
+}
+```
+This time, when you run the code, you should see the changes!
+### Multiple Class Objects
+16. We need to use the scalar we added. Multiply everything related to object placement in the display method by the scalar. All centerpoints. All widths and heights. All endpoints. 
+```processing
+```
 
 ## Lab Submissions
 Link to your github repository with your lab below.
