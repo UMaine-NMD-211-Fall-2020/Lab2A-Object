@@ -252,7 +252,7 @@ class TriShape{
   
 }
 ```
-10. Run the file. 
+11. Run the file. 
 You still cannot see the triangle. 
 We need to display `tri1` (or your class instance name) in draw. 
 Once you make the changes below, run again, and you should be able to see the object. 
@@ -301,7 +301,118 @@ class TriShape{
 }
 ```
 ### Generalized Class
-11.
+Right now, our conglomerate shape is hardcoded.
+That means, we had to physically say where each point is laid out. 
+If we can write out the orientation of each shape with respect to one point in the shape, we can place the object wherever we want. 
+12. Our shapes are currently hardcoded. 
+We need to write the shapes in terms of their center points for the entire shape is. 
+We need to define local variables for the class, values intrinsic to any instance of this class object. 
+```processing
+
+TriShape tri1;
+
+void setup(){
+  size( 500 , 500);   
+  noStroke();
+  
+  // initialize trishape
+  tri1 = new TriShape();
+}
+
+void draw(){
+  background(255);
+  
+  // display objects
+  tri1.display();
+}
+
+class TriShape{
+  
+  // class intrinsic values
+  /* CHANGES HERE */
+  float cx;
+  float cy;
+  /* END CHANGES */
+  
+  // constructor
+  TriShape(){ 
+  }
+  
+  // display
+  void display(){
+    // triangle 1
+    fill( 255, 0, 0, 200);
+    triangle( 100, 100,       //x, y per point
+              100, 300, 
+              300, 300);
+    
+    // triangle 2
+    fill( 255, 255, 0, 200);
+    triangle( 200, 200,       // x, y per point
+              200, 400, 
+              400, 400);
+  }
+}
+```
+13. We need to add the local variales by adding them to the constructor. 
+Two changes were made - one in the constructor, one in the method setup where we initialize TriShape.
+```processing
+
+TriShape tri1;
+
+void setup(){
+  size( 500 , 500);   
+  noStroke();
+  
+  /* CHANGE 1 HERE */
+  // initialize trishape 
+  tri1 = new TriShape( 250 , 250 ); // TriShape object centered at (250, 250)
+  /* END CHANGE 1 */
+}
+
+void draw(){
+  background(255);
+  
+  // display objects
+  tri1.display();
+}
+
+class TriShape{
+  
+  // class intrinsic values
+  float cx;
+  float cy;
+  
+  /* CHANGE 2 HERE */
+  // constructor
+  TriShape( float xInput, float yInput){
+    cx = xInput;
+    cy = yInput;
+  }
+  /* END CHANGE 2 */
+  
+  // display
+  void display(){
+    // triangle 1
+    fill( 255, 0, 0, 200);
+    triangle( 100, 100,       //x, y per point
+              100, 300, 
+              300, 300);
+    
+    // triangle 2
+    fill( 255, 255, 0, 200);
+    triangle( 200, 200,       // x, y per point
+              200, 400, 
+              400, 400);
+  }
+}
+```
+14. We need to put new 
+```processing
+```
+15. We need to put new 
+```processing
+```
 ### Multiple Class Objects
 ### Make Your Class Scaleable
 
