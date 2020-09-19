@@ -19,9 +19,10 @@ Create a README.md inside this folder.
 Save your file within it as `Lab2A-*YOUR FIRST NAME*-*YOUR LAST NAME*`
 3. Add your introductory comments to the top of your file. Save.
 ```processing
-/*  Lab 2A
+/*  Lab 2A - NMD 211
     Katarina Hoeger
     September 16, 2020
+    
     
     Create an Object
     - create an object
