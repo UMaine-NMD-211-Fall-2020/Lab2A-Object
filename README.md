@@ -659,5 +659,5 @@ Link to your github repository with your lab below.
 
 [Example First Name - 2A ](http://example.com/)
 
-
+[Elijah Story - 2A](https://github.com/ElijahStory/Lab2-ElijahStory/tree/master/Lab2A_Elijah_Story)
 
